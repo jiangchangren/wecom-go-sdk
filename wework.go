@@ -1,12 +1,13 @@
 package wework
 
 import (
+	"net/url"
+
 	badger "github.com/dgraph-io/badger/v3"
 	"github.com/go-laoji/wecom-go-sdk/internal"
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"net/url"
 )
 
 type IWeWork interface {
@@ -245,6 +246,17 @@ type IWeWork interface {
 	UserIdToOpenUserId(corpId uint, userIdList []string) (resp UserIdToOpenUserIdResponse)
 	GetNewExternalUserId(corpId uint, userIdList []string) (resp GetNewExternalUserIdResponse)
 	GroupChatGetNewExternalUserId(corpId uint, request GroupChatGetNewExternalUserIdRequest) (resp GetNewExternalUserIdResponse)
+
+	CreateCalendar(corpId uint, req *CreateCalendarReq) (resp CreateCalendarResponse)
+	UpdateCalendar(corpId uint, req *UpdateCalendarReq) (resp internal.BizResponse)
+	GetCalendars(corpId uint, req *GetCalendarReq) (resp GetCalendarResponse)
+	DeleteCalendar(corpId uint, req *DeleteCalendarReq) (resp internal.BizResponse)
+
+	CreateSchedule(corpId uint, req *CreateScheduleReq) (resp CreateScheduleResponse)
+	UpdateSchedule(corpId uint, req *UpdateScheduleReq) (resp CreateScheduleResponse)
+	DeleteSchedule(corpId uint, req *DeleteScheduleReq) (resp internal.BizResponse)
+	AddScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse)
+	DeleteScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse)
 }
 
 type weWork struct {
