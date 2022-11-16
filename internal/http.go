@@ -16,9 +16,22 @@ import (
 	"time"
 )
 
+type BizResponseInterface interface {
+	SetCode(code int)
+	SetMsg(msg string)
+}
+
 // BizResponse 基础返回类型，定义错误代码及错误消息
 type BizResponse struct {
 	Error
+}
+
+func (e *BizResponse) SetCode(code int) {
+	e.ErrCode = code
+}
+
+func (e *BizResponse) SetMsg(msg string) {
+	e.ErrorMsg = msg
 }
 
 const (

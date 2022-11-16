@@ -1,9 +1,6 @@
 package wework
 
 import (
-	"encoding/json"
-	"fmt"
-
 	"github.com/go-laoji/wecom-go-sdk/internal"
 )
 
@@ -70,65 +67,30 @@ type ScheduleAttendee struct {
 
 // CreateSchedule 创建日程
 func (ww weWork) CreateSchedule(corpId uint, req *CreateScheduleReq) (resp CreateScheduleResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/schedule/add?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add", req, &resp)
 	return
 }
 
 // UpdateSchedule 更新日程
 func (ww weWork) UpdateSchedule(corpId uint, req *UpdateScheduleReq) (resp CreateScheduleResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/schedule/update?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/update", req, &resp)
 	return
 }
 
 // DeleteSchedule 删除日程
 func (ww weWork) DeleteSchedule(corpId uint, req *DeleteScheduleReq) (resp internal.BizResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/schedule/del?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/del", req, &resp)
 	return
 }
 
 // AddScheduleAttendees 新增日程参与者
 func (ww weWork) AddScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/schedule/add_attendees?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add_attendees", req, &resp)
 	return
 }
 
 // DeleteScheduleAttendees 删除日程参与者
 func (ww weWork) DeleteScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/schedule/del_attendees?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add_attendees", req, &resp)
 	return
 }

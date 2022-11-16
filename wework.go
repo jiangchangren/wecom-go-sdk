@@ -1,6 +1,8 @@
 package wework
 
 import (
+	"encoding/json"
+	"fmt"
 	"net/url"
 
 	badger "github.com/dgraph-io/badger/v3"
@@ -333,5 +335,17 @@ func (ww weWork) GetAgentId(corpId uint) (appId int) {
 		return ww.getAgentIdFunc(corpId)
 	} else {
 		return ww.defaultAgentIdFunc(corpId)
+	}
+}
+
+// requestCorp 第三方应用请求
+func (ww weWork) requestCorp(corpId uint, path string, req interface{}, resp internal.BizResponseInterface) {
+	queryParams := ww.buildCorpQueryToken(corpId)
+	body, err := internal.HttpPost(fmt.Sprintf(path+"?%s", queryParams.Encode()), req)
+	if err != nil {
+		resp.SetCode(500)
+		resp.SetMsg(err.Error())
+	} else {
+		json.Unmarshal(body, &resp)
 	}
 }

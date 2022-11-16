@@ -1,9 +1,6 @@
 package wework
 
 import (
-	"encoding/json"
-	"fmt"
-
 	"github.com/go-laoji/wecom-go-sdk/internal"
 )
 
@@ -65,52 +62,24 @@ type DeleteCalendarReq struct {
 
 // CreateCalendar 创建日历
 func (ww weWork) CreateCalendar(corpId uint, req *CreateCalendarReq) (resp CreateCalendarResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/calendar/add?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/add", req, &resp)
 	return
 }
 
 // UpdateCalendar 更新日历
 func (ww weWork) UpdateCalendar(corpId uint, req *UpdateCalendarReq) (resp internal.BizResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/calendar/update?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/update", req, &resp)
 	return
 }
 
 // GetCalendars 获取日历
 func (ww weWork) GetCalendars(corpId uint, req *GetCalendarReq) (resp GetCalendarResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/calendar/get?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/get", req, &resp)
 	return
 }
 
 // DeleteCalendar 删除日历
 func (ww weWork) DeleteCalendar(corpId uint, req *DeleteCalendarReq) (resp internal.BizResponse) {
-	queryParams := ww.buildCorpQueryToken(corpId)
-	body, err := internal.HttpPost(fmt.Sprintf("/cgi-bin/oa/calendar/del?%s", queryParams.Encode()), req)
-	if err != nil {
-		resp.ErrCode = 500
-		resp.ErrorMsg = err.Error()
-	} else {
-		json.Unmarshal(body, &resp)
-	}
+	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/del", req, &resp)
 	return
 }
