@@ -21,19 +21,23 @@ type Calendar struct {
 }
 
 type CalendarSimple struct {
-	CalId       string `json:"cal_id,omitempty"`
-	Readonly    int    `json:"readonly"`
-	Summary     string `json:"summary"`
-	Color       string `json:"color"`
-	Description string `json:"description"`
-	Shares      []struct {
-		Userid   string `json:"userid"`
-		Readonly int    `json:"readonly"`
-	} `json:"shares"`
-	PublicRange struct {
-		UserIds  []string `json:"userids"`
-		PartyIds []int    `json:"partyids"`
-	} `json:"public_range"`
+	CalId       string               `json:"cal_id,omitempty"`
+	Readonly    int                  `json:"readonly"`
+	Summary     string               `json:"summary"`
+	Color       string               `json:"color"`
+	Description string               `json:"description"`
+	Shares      []*CalendarShare     `json:"shares,omitempty"`
+	PublicRange *CalendarPublicRange `json:"public_range,omitempty"`
+}
+
+type CalendarShare struct {
+	Userid   string `json:"userid"`
+	Readonly int    `json:"readonly"`
+}
+
+type CalendarPublicRange struct {
+	UserIds  []string `json:"userids"`
+	PartyIds []int    `json:"partyids"`
 }
 
 type CreateCalendarResponse struct {
