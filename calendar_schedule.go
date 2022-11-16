@@ -14,8 +14,8 @@ type CreateScheduleReq struct {
 
 type Schedule struct {
 	Organizer               string              `json:"organizer"`
-	StartTime               int                 `json:"start_time"`
-	EndTime                 int                 `json:"end_time"`
+	StartTime               int64               `json:"start_time"`
+	EndTime                 int64               `json:"end_time"`
 	Attendees               []*ScheduleAttendee `json:"attendees,omitempty"`
 	Summary                 string              `json:"summary,omitempty"`
 	Description             string              `json:"description,omitempty"`
