@@ -13,20 +13,18 @@ type CreateScheduleReq struct {
 }
 
 type Schedule struct {
-	Organizer string `json:"organizer"`
-	StartTime int    `json:"start_time"`
-	EndTime   int    `json:"end_time"`
-	Attendees []struct {
-		Userid string `json:"userid"`
-	} `json:"attendees,omitempty"`
-	Summary                 string             `json:"summary,omitempty"`
-	Description             string             `json:"description,omitempty"`
-	Reminders               *ScheduleReminders `json:"reminders,omitempty"`
-	Location                string             `json:"location"`
-	AllowActiveJoin         int                `json:"allow_active_join"`
-	OnlyOrganizerCreateChat int                `json:"only_organizer_create_chat"`
-	CalId                   string             `json:"cal_id,omitempty"`
-	ScheduleId              string             `json:"schedule_id,omitempty"`
+	Organizer               string              `json:"organizer"`
+	StartTime               int                 `json:"start_time"`
+	EndTime                 int                 `json:"end_time"`
+	Attendees               []*ScheduleAttendee `json:"attendees,omitempty"`
+	Summary                 string              `json:"summary,omitempty"`
+	Description             string              `json:"description,omitempty"`
+	Reminders               *ScheduleReminders  `json:"reminders,omitempty"`
+	Location                string              `json:"location"`
+	AllowActiveJoin         int                 `json:"allow_active_join"`
+	OnlyOrganizerCreateChat int                 `json:"only_organizer_create_chat"`
+	CalId                   string              `json:"cal_id,omitempty"`
+	ScheduleId              string              `json:"schedule_id,omitempty"`
 }
 
 type ScheduleReminders struct {
@@ -62,10 +60,12 @@ type DeleteScheduleReq struct {
 }
 
 type ScheduleAttendeesReq struct {
-	ScheduleId string `json:"schedule_id"`
-	Attendees  []struct {
-		Userid string `json:"userid"`
-	} `json:"attendees"`
+	ScheduleId string              `json:"schedule_id"`
+	Attendees  []*ScheduleAttendee `json:"attendees"`
+}
+
+type ScheduleAttendee struct {
+	Userid string `json:"userid"`
 }
 
 // CreateSchedule 创建日程
