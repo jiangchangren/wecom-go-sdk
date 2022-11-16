@@ -340,6 +340,12 @@ func (ww weWork) GetAgentId(corpId uint) (appId int) {
 
 // requestCorp 第三方应用请求
 func (ww weWork) requestCorp(corpId uint, path string, req interface{}, resp internal.BizResponseInterface) {
+	if ok := validate.Struct(req); ok != nil {
+		resp.SetCode(500)
+		resp.SetMsg(ok.Error())
+		return
+	}
+
 	queryParams := ww.buildCorpQueryToken(corpId)
 	body, err := internal.HttpPost(fmt.Sprintf(path+"?%s", queryParams.Encode()), req)
 	if err != nil {
