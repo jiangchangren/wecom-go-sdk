@@ -91,6 +91,6 @@ func (ww weWork) AddScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (r
 
 // DeleteScheduleAttendees 删除日程参与者
 func (ww weWork) DeleteScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add_attendees", req, &resp)
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/del_attendees", req, &resp)
 	return
 }
