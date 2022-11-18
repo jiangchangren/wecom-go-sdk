@@ -10,14 +10,14 @@ type CreateScheduleReq struct {
 }
 
 type Schedule struct {
-	Organizer               string              `json:"organizer"`
+	Organizer               string              `json:"organizer,omitempty"`
 	StartTime               int64               `json:"start_time"`
 	EndTime                 int64               `json:"end_time"`
 	Attendees               []*ScheduleAttendee `json:"attendees,omitempty"`
 	Summary                 string              `json:"summary,omitempty"`
 	Description             string              `json:"description,omitempty"`
 	Reminders               *ScheduleReminders  `json:"reminders,omitempty"`
-	Location                string              `json:"location"`
+	Location                string              `json:"location,omitempty"`
 	AllowActiveJoin         int                 `json:"allow_active_join"`
 	OnlyOrganizerCreateChat int                 `json:"only_organizer_create_chat"`
 	CalId                   string              `json:"cal_id,omitempty"`
@@ -47,7 +47,7 @@ type UpdateScheduleReq struct {
 	OpMode        int      `json:"op_mode"`
 	OpStartTime   int      `json:"op_start_time"`
 	Schedule      Schedule `json:"schedule"`
-	AgentId       int      `json:"agentid"`
+	AgentId       int      `json:"agentid,omitempty"`
 }
 
 type DeleteScheduleReq struct {
