@@ -42,6 +42,15 @@ type CreateScheduleResponse struct {
 	ScheduleId string `json:"schedule_id"`
 }
 
+type GetScheduleReq struct {
+	ScheduleIdList []string `json:"schedule_id_list"`
+}
+
+type GetScheduleReply struct {
+	internal.BizResponse
+	ScheduleList []*Schedule `json:"schedule_list"`
+}
+
 type UpdateScheduleReq struct {
 	SkipAttendees int      `json:"skip_attendees"`
 	OpMode        int      `json:"op_mode"`
@@ -68,6 +77,12 @@ type ScheduleAttendee struct {
 // CreateSchedule 创建日程
 func (ww weWork) CreateSchedule(corpId uint, req *CreateScheduleReq) (resp CreateScheduleResponse) {
 	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add", req, &resp)
+	return
+}
+
+// GetSchedule 获取日程
+func (ww weWork) GetSchedule(corpId uint, req *GetScheduleReq) (resp GetScheduleReply) {
+	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/get", req, &resp)
 	return
 }
 
