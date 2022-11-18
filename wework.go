@@ -255,6 +255,7 @@ type IWeWork interface {
 	DeleteCalendar(corpId uint, req *DeleteCalendarReq) (resp internal.BizResponse)
 
 	CreateSchedule(corpId uint, req *CreateScheduleReq) (resp CreateScheduleResponse)
+	GetSchedule(corpId uint, req *GetScheduleReq) (resp GetScheduleReply)
 	UpdateSchedule(corpId uint, req *UpdateScheduleReq) (resp CreateScheduleResponse)
 	DeleteSchedule(corpId uint, req *DeleteScheduleReq) (resp internal.BizResponse)
 	AddScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse)
