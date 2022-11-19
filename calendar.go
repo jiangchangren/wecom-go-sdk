@@ -62,24 +62,24 @@ type DeleteCalendarReq struct {
 
 // CreateCalendar 创建日历
 func (ww weWork) CreateCalendar(corpId uint, req *CreateCalendarReq) (resp CreateCalendarResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/add", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/calendar/add", req, &resp)
 	return
 }
 
 // UpdateCalendar 更新日历
 func (ww weWork) UpdateCalendar(corpId uint, req *UpdateCalendarReq) (resp internal.BizResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/update", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/calendar/update", req, &resp)
 	return
 }
 
 // GetCalendars 获取日历
 func (ww weWork) GetCalendars(corpId uint, req *GetCalendarReq) (resp GetCalendarResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/get", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/calendar/get", req, &resp)
 	return
 }
 
 // DeleteCalendar 删除日历
 func (ww weWork) DeleteCalendar(corpId uint, req *DeleteCalendarReq) (resp internal.BizResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/calendar/del", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/calendar/del", req, &resp)
 	return
 }

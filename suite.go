@@ -3,12 +3,13 @@ package wework
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dgraph-io/badger/v3"
-	"github.com/go-laoji/wecom-go-sdk/internal"
-	"github.com/go-laoji/wecom-go-sdk/pkg/svr/models"
 	"net/url"
 	"os"
 	"time"
+
+	"github.com/dgraph-io/badger/v3"
+	"github.com/go-laoji/wecom-go-sdk/internal"
+	"github.com/go-laoji/wecom-go-sdk/pkg/svr/models"
 )
 
 // UpdateSuiteTicket 用于接收回调后更新sdk实例的suite ticket

@@ -76,36 +76,36 @@ type ScheduleAttendee struct {
 
 // CreateSchedule 创建日程
 func (ww weWork) CreateSchedule(corpId uint, req *CreateScheduleReq) (resp CreateScheduleResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/schedule/add", req, &resp)
 	return
 }
 
 // GetSchedule 获取日程
 func (ww weWork) GetSchedule(corpId uint, req *GetScheduleReq) (resp GetScheduleReply) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/get", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/schedule/get", req, &resp)
 	return
 }
 
 // UpdateSchedule 更新日程
 func (ww weWork) UpdateSchedule(corpId uint, req *UpdateScheduleReq) (resp CreateScheduleResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/update", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/schedule/update", req, &resp)
 	return
 }
 
 // DeleteSchedule 删除日程
 func (ww weWork) DeleteSchedule(corpId uint, req *DeleteScheduleReq) (resp internal.BizResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/del", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/schedule/del", req, &resp)
 	return
 }
 
 // AddScheduleAttendees 新增日程参与者
 func (ww weWork) AddScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/add_attendees", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/schedule/add_attendees", req, &resp)
 	return
 }
 
 // DeleteScheduleAttendees 删除日程参与者
 func (ww weWork) DeleteScheduleAttendees(corpId uint, req *ScheduleAttendeesReq) (resp internal.BizResponse) {
-	ww.requestCorp(corpId, "/cgi-bin/oa/schedule/del_attendees", req, &resp)
+	ww.request(corpId, "/cgi-bin/oa/schedule/del_attendees", req, &resp)
 	return
 }
