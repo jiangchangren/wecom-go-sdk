@@ -20,7 +20,6 @@ func (ww *weWork) UpdateSuiteTicket(ticket string) {
 		err := txn.SetEntry(entry)
 		return err
 	})
-	ww.requestSuiteToken()
 }
 
 type suiteTokenResponse struct {
